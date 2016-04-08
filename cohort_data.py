@@ -119,28 +119,54 @@ def students_by_house(filename):
     instructors = []
 
     for line in cohort_file:
-        line = line.rstrip
+        line = line.rstrip()
         tokens = line.split("|")
 
-        if tokens[-1] == ('Summer 2015'):
-            full_name = tokens[0] + " " + tokens[1]
-            summer_15.append(full_name)
+        if tokens[2] == ('Gryffindor'):
+            gryffindor.append(tokens[1])
         
-        elif tokens[-1] == ('Winter 2015'):
-            full_name = tokens[0] + " " + tokens[1]
-            winter_15.append(full_name)
+        elif tokens[2] == ('Slytherin'):
+            slytherin.append(tokens[1])
         
-        elif tokens[-1] == ('Spring 2015'):
-            full_name = tokens[0] + " " + tokens[1]
-            spring_15.append(full_name)
+        elif tokens[2] == ('Hufflepuff'):
+            hufflepuff.append(tokens[1])
+         
+        elif tokens[2] == ('Ravenclaw'):
+            ravenclaw.append(tokens[1])
+            
+        elif tokens[2] == ("Dumbledore's Army"):
+            dumbledores_army.append(tokens[1])
+                 
+        elif tokens[2] == ('Order of the Phoenix'):
+            order_of_the_phoenix.append(tokens[1])
+
+        elif tokens[-1] == ('I'):
+            instructors.append(tokens[1])
         
         elif tokens[-1] == ('TA'):
-            full_name = tokens[0] + " " + tokens[1]
-            tas.append(full_name)
+            tas.append(tokens[1])
         
         else:
+            pass
 
     # Code goes here
+    gryffindor.sort() 
+    ravenclaw.sort()
+    hufflepuff.sort()
+    slytherin.sort() 
+    dumbledores_army.sort()
+    order_of_the_phoenix.sort()
+    instructors.sort()
+    tas.sort()
+
+    all_students = [gryffindor, 
+                    hufflepuff, 
+                    ravenclaw, 
+                    slytherin, 
+                    order_of_the_phoenix, 
+                    dumbledores_army, 
+                    tas, 
+                    instructors]
 
     return all_students
 
@@ -217,7 +243,7 @@ def find_house_members_by_student_name(student_list):
 
 print unique_houses("cohort_data.txt")
 print sort_by_cohort("cohort_data.txt")
-# print students_by_house("cohort_data.txt")
+print students_by_house("cohort_data.txt")
 # all_students_data = all_students_tuple_list("cohort_data.txt")
 # print all_students_data
 # find_cohort_by_student_name(all_students_data)
